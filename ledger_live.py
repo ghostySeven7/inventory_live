@@ -28,12 +28,9 @@ s2a_client_read = Sheet2APIClient(
 
 
 # pulls all data from google sheet storing scanned inventory
-# xml_live = s2a_client_read.get_rows()
-# print('xml_live = ', xml_live)
-# print('xxx_linebreakk_xxx')
-    # commented to save free trial bandwidth
-    # using mock_xml in place of xml_live
-    # make sure to change all instances in final production
+xml_live = s2a_client_read.get_rows()
+print('xml_live = ', xml_live)
+print('xxx_linebreakk_xxx')
 
 
 tableau_server_config = {
@@ -84,12 +81,12 @@ print('xxx_linebreakk_xxx')
 def ledger_live_handler():
     for itab in tab_proper_inventory:
 
-        for ixml in mock_xml:
+        for ixml in xml_live:
             data_qty_xml = ixml['qty']
             data_qty_tab = itab['qty']
             if itab['product'] == ixml['product']:
                 ixml['qty'] = data_qty_tab + data_qty_xml
-                ledger_live = mock_xml
+                ledger_live = xml_live
                 break
             else:
                 pass
