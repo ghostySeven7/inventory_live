@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk  # as 'pillow'
-import messy
+import live_inventory
 
 
 # defining the master gui box
@@ -19,7 +19,7 @@ run_image = ImageTk.PhotoImage(run_image)
 # runs live_inventory.py
 def run_button_click():
     messagebox.showinfo('System_Status:', 'Inventory has been updated')
-    messy.ledger_live_handler()
+    live_inventory.makes_ledger_live()
 
 
 # RUN button properties
@@ -28,4 +28,6 @@ run_button.place(relx=0.5, rely=0.5, anchor='center')
 
 
 tk.mainloop()
+
+
 
