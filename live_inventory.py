@@ -5,8 +5,6 @@ from tableau_api_lib.utils.querying import get_views_dataframe, get_view_data_da
 # import numpy as np
 # import time
 
-# make sure to comment all prints before production. and delete me ;)
-
 
 def makes_ledger_live():
 
@@ -44,8 +42,8 @@ def makes_ledger_live():
 
     # getting the specific view data (by view id)
     view_data_df = get_view_data_dataframe(conn, view_id='8a03bff6-f3d8-459c-a6e2-32339a73014f')
-    print('tableau view data = ', view_data_df)
-    print('xxx_linebreakk_xxx')
+    # print('tableau view data = ', view_data_df)
+    # print('xxx_linebreakk_xxx')
 
     # getting specific view data as tables
     tab_product_table = view_data_df['Product']
@@ -63,8 +61,8 @@ def makes_ledger_live():
             if row_id_product == row_id_qty:
                 tab_proper_inventory.append({'product': x, 'qty': y})
 
-    print('tab_proper_inventory = ', tab_proper_inventory)
-    print('xxx_linebreakk_xxx')
+    # print('tab_proper_inventory = ', tab_proper_inventory)
+    # print('xxx_linebreakk_xxx')
 
     # creates the final live_inventory[{}] then uploads it to final_inventory google sheet
     for itab in tab_proper_inventory:
@@ -77,8 +75,8 @@ def makes_ledger_live():
             else:
                 pass
 
-    print('ledger_live = ', ledger_live)
-    print('xxx_linebreakk_xxx')
+    # print('ledger_live = ', ledger_live)
+    # print('xxx_linebreakk_xxx')
 
     s2a_client_write.delete_rows(
         sheet='Sheet1'
