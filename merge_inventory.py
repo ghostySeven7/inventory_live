@@ -1,9 +1,6 @@
 from sheet2api import Sheet2APIClient
 from tableau_api_lib import TableauServerConnection
-from tableau_api_lib.utils.querying import get_views_dataframe, get_view_data_dataframe
-# import pandas as pd
-# import numpy as np
-# import time
+from tableau_api_lib.utils.querying import get_view_data_dataframe
 
 
 def makes_ledger_live():
@@ -21,15 +18,15 @@ def makes_ledger_live():
     )
 
     # pulls all data from google sheet storing scanned inventory
-    xml_live = s2a_client_read.get_rows()
-    # print('xml_live = ', xml_live)
+    xls_live = s2a_client_read.get_rows()
+    # print('xls_live = ', xls_live)
     # print('xxx_linebreakk_xxx')
 
 
     tableau_server_config = {
         'tableau_prod': {
             'server': 'https://prod-useast-a.online.tableau.com/',
-            'api_version': '3.16',
+            'api_version': '3.17',
             'username': 'longdisdick27@gmail.com',
             'password': 'Bruh76%1',
             'site_name': 'bullish',
@@ -67,10 +64,10 @@ def makes_ledger_live():
     # creates the final live_inventory[{}] then uploads it to final_inventory google sheet
     for itab in tab_proper_inventory:
 
-        for ixml in xml_live:
+        for ixml in xls_live:
             if itab['product'] == ixml['product']:
                 ixml['qty'] = itab['qty'] + ixml['qty']
-                ledger_live = xml_live
+                ledger_live = xls_live
                 break
             else:
                 pass
