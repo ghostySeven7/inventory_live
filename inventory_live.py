@@ -20,12 +20,11 @@ def makes_ledger_live():
     # pulls all data from shared pull sheet excel online. stores scanned inventory
     xls_live = s2a_client_read.get_rows()
     # print('xls_live = ', xls_live)
-    # print('xxx_linebreakk_xxx')
 
     tableau_server_config = {
         'tableau_prod': {
             'server': 'https://prod-useast-a.online.tableau.com/',
-            'api_version': '3.17',
+            'api_version': '3.17',  # here is where you update api version
             'username': 'longdisdick27@gmail.com',
             'password': 'Bruh76%1',
             'site_name': 'bullish',
@@ -39,7 +38,6 @@ def makes_ledger_live():
     # getting the specific view data (by view id)
     view_data_df = get_view_data_dataframe(conn, view_id='8a03bff6-f3d8-459c-a6e2-32339a73014f')
     # print('tableau view data = ', view_data_df)
-    # print('xxx_linebreakk_xxx')
 
     # getting specific view data as tables
     tab_product_table = view_data_df['Product']
@@ -58,7 +56,6 @@ def makes_ledger_live():
                 tab_proper_inventory.append({'product': x, 'qty': y})
 
     # print('tab_proper_inventory = ', tab_proper_inventory)
-    # print('xxx_linebreakk_xxx')
 
     # creates the final live_inventory[{}] then uploads it to final_inventory google sheet
     for itab in tab_proper_inventory:
@@ -72,7 +69,6 @@ def makes_ledger_live():
                 pass
 
     # print('ledger_live = ', ledger_live)
-    # print('xxx_linebreakk_xxx')
 
     s2a_client_write.delete_rows(
         sheet='Sheet1'
@@ -85,9 +81,8 @@ def makes_ledger_live():
         )
 
     print('end :)')
-
-
-if __name__ == '__makes_ledger_live__':
-    makes_ledger_live()
+    
+    
+makes_ledger_live()
 
 
